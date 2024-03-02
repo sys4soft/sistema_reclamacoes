@@ -70,6 +70,13 @@ Paralelamente, o sistema vai ter um conjunto de usuários com diferentes perfis:
     - updated_at (datetime) / NULL
     - deleted_at (datetime) / NULL
 
+db_complains
+user_db_complains
+41q8MuMulaw1cE11383iwIx318jEC4
+
+
+
+
 # atenção:
 - a reclamação, após ser submetida, não vai poder ser editada.
 - as respostas dos colaboradores vão poder ser editadas até que a reclamação seja fechada.
