@@ -44,7 +44,7 @@ Paralelamente, o sistema vai ter um conjunto de usuários com diferentes perfis:
 
 - complaints
     - id (PK)
-    - client_id (FK)
+    - client_id
     - area (varchar 100)
     - message (text)
     - attachments (json) / NULL
