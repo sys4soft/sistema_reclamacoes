@@ -14,6 +14,16 @@ class Main extends BaseController
 
     public function submit()
     {
-        dd($this->request->getPost());
+
+        echo '<pre>';
+        print_r($this->request->getPost());
+        print_r($this->request->getFiles());
+
+        // dd(
+        //     [
+        //         $this->request->getPost(),
+        //         $this->request->getFiles()
+        //     ]
+        // );
     }
 }

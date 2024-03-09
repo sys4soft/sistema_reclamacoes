@@ -6,28 +6,32 @@
 
             <?= form_open_multipart('/submit') ?>
             
-                <div class="mb-3">
-                    <label for="email" class="form-label">Email *</label>
-                    <input type="email" class="form-control" id="email" name="email" required>
+                <div class="row mb-3">
+                    <div class="col">
+                        <label for="email" class="form-label">Email *</label>
+                        <input type="email" class="form-control" id="email" name="email" required>
+                    </div>
+    
+                    <div class="col">
+                        <label for="name" class="form-label">Nome</label>
+                        <input type="text" class="form-control" id="name" name="name">
+                    </div>
                 </div>
 
-                <div class="mb-3">
-                    <label for="name" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="name" name="name">
-                </div>
-
-                <div class="mb-3">
-                    <label for="area" class="form-label">Área de reclamação *</label>
-                    <select class="form-select" id="area" name="area" required>
-                        <option value="1">Área 1</option>
-                        <option value="2">Área 2</option>
-                        <option value="3">Área 3</option>
-                    </select>
+                <div class="row mb-3">
+                    <div class="col-6">
+                        <label for="area" class="form-label">Área de reclamação *</label>
+                        <select class="form-select" id="area" name="area" required>
+                            <option value="1">Área 1</option>
+                            <option value="2">Área 2</option>
+                            <option value="3">Área 3</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="complaint" class="form-label">Área de texto para a reclamação *</label>
-                    <textarea class="form-control" id="complaint" name="complaint" required></textarea>
+                    <textarea class="form-control" id="complaint" name="complaint" rows="6" required></textarea>
                 </div>
 
                 <div class="mb-3">
