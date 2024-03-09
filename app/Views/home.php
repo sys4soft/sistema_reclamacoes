@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col">
 
-            <?= form_open_multipart('/submit') ?>
+            <?= form_open_multipart('/submit', ['novalidate' => true]) ?>
             
                 <div class="row mb-3">
                     <div class="col">
