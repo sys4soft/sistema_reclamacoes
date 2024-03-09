@@ -11,4 +11,9 @@ class Main extends BaseController
     {
         return view('home');
     }
+
+    public function submit()
+    {
+        dd($this->request->getPost());
+    }
 }
