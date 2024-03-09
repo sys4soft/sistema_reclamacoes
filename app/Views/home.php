@@ -9,7 +9,8 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="email" class="form-label">Email *</label>
-                        <input type="email" class="form-control" id="email" name="email" required>
+                        <input type="email" class="form-control" id="email" name="email" required value="<?= old('email') ?>">
+                        <?= show_validation_error('email', $validation_errors) ?>
                     </div>
     
                     <div class="col">
@@ -26,12 +27,14 @@
                             <option value="2">Área 2</option>
                             <option value="3">Área 3</option>
                         </select>
+                        <?= show_validation_error('area', $validation_errors) ?>
                     </div>
                 </div>
 
                 <div class="mb-3">
                     <label for="complaint" class="form-label">Área de texto para a reclamação *</label>
                     <textarea class="form-control" id="complaint" name="complaint" rows="6" required></textarea>
+                    <?= show_validation_error('complaint', $validation_errors) ?>
                 </div>
 
                 <div class="mb-3">
@@ -46,16 +49,7 @@
                 <button type="submit" class="btn btn-primary">Enviar</button>
 
             <?= form_close() ?>
-
         </div>
     </div>
 </div>
 <?= $this->endSection() ?>
-<!-- 
-- Email * (obrigatório)
-- Nome (facultativo)
-- Selecionar a área de reclamação * (obrigatório) - select de html com opções
-- Área de texto para a reclamação * (obrigatório)
-- Upload de ficheiros (max 3) (facultativo)
-- Enviar (botão)
- -->

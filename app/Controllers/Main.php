@@ -12,7 +12,7 @@ class Main extends BaseController
         // check for validation errors       
         $data['validation_errors'] = session()->getFlashdata('errors');
 
-        return view('home');
+        return view('home', $data);
     }
 
     public function submit()
@@ -27,7 +27,23 @@ class Main extends BaseController
                     'required' => 'O campo {field} é obrigatório',
                     'valid_email' => 'O campo {field} deve ser um email válido'
                 ]
-            ]
+            ],
+            'area' => [
+                'label' => 'Área',
+                'rules' => 'required',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório'
+                ]
+            ],
+            'complaint' => [
+                'label' => 'Reclamação',
+                'rules' => 'required|max_length[3000]',
+                'errors' => [
+                    'required' => 'O campo {field} é obrigatório',
+                    'max_length' => 'O campo {field} deve ter no máximo {param} caracteres'
+                ]
+            ],
+
         ]);
         
         if (!$validation) {
