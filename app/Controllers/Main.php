@@ -71,21 +71,24 @@ class Main extends BaseController
         ]);
         
         if (!$validation) {
-
-            // dd($this->validator->getErrors());
-
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }      
         
-        echo '<pre>';
-        print_r($this->request->getPost());
-        print_r($this->request->getFiles());
+        // print_r($this->request->getPost());
+        // print_r($this->request->getFiles());
 
-        // dd(
-        //     [
-        //         $this->request->getPost(),
-        //         $this->request->getFiles()
-        //     ]
-        // );
+        $file1 = $this->request->getFile('file1');
+        // $file2 = $this->request->getFile('file2');
+        // $file3 = $this->request->getFile('file3');
+
+        // dd([$file1, $file2, $file3]);
+
+        if($file1->isValid() && !$file1->hasMoved()) {
+            $newName = $file1->getRandomName();
+            $file1->move(WRITEPATH . 'uploads', $newName);
+        }
+
+        echo 'OK';
+
     }
 }
