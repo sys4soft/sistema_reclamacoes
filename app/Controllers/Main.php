@@ -51,18 +51,31 @@ class Main extends BaseController
                     'ext_in' => 'O campo {field} deve ser um ficheiro com extensão do tipo jpg ou pdf'
                 ]
             ],
+            'file2' => [
+                'label' => 'Ficheiro 2',
+                'rules' => 'max_size[file2,512]|ext_in[file2,jpg,pdf]',
+                'errors' => [
+                    'max_size' => 'O campo {field} deve ter no máximo 512KB',
+                    'ext_in' => 'O campo {field} deve ser um ficheiro com extensão do tipo jpg ou pdf'
+                ]
+            ],
+            'file3' => [
+                'label' => 'Ficheiro 3',
+                'rules' => 'max_size[file3,512]|ext_in[file3,jpg,pdf]',
+                'errors' => [
+                    'max_size' => 'O campo {field} deve ter no máximo 512KB',
+                    'ext_in' => 'O campo {field} deve ser um ficheiro com extensão do tipo jpg ou pdf'
+                ]
+            ],
 
         ]);
         
         if (!$validation) {
-            dd($this->validator->getErrors());
+
+            // dd($this->validator->getErrors());
 
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-        }
-        
-        
-        die('OK');
-        
+        }      
         
         echo '<pre>';
         print_r($this->request->getPost());

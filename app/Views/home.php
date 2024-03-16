@@ -40,9 +40,19 @@
                 <div class="mb-3">
                     <label for="files" class="form-label">Upload de ficheiros</label>
                     <div class="d-flex flex-row justify-content-between gap-3">
-                        <input class="form-control" type="file" id="file1" name="file1">
-                        <input class="form-control" type="file" id="file2" name="file2">
-                        <input class="form-control" type="file" id="file3" name="file3">
+                        <div>
+                            <input class="form-control" type="file" id="file1" name="file1">
+                            <?= show_validation_error('file1', $validation_errors) ?>
+                        </div>
+                        <div>
+                            <input class="form-control" type="file" id="file2" name="file2">
+                            <?= show_validation_error('file2', $validation_errors) ?>
+                        </div>
+                        <div>
+                            <input class="form-control" type="file" id="file3" name="file3">
+                            <?= show_validation_error('file3', $validation_errors) ?>
+                        </div>
+
                     </div>
                 </div>
 
