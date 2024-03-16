@@ -43,10 +43,20 @@ class Main extends BaseController
                     'max_length' => 'O campo {field} deve ter no máximo {param} caracteres'
                 ]
             ],
+            'file1' => [
+                'label' => 'Ficheiro 1',
+                'rules' => 'max_size[file1,512]|ext_in[file1,jpg,pdf]',
+                'errors' => [
+                    'max_size' => 'O campo {field} deve ter no máximo 512KB',
+                    'ext_in' => 'O campo {field} deve ser um ficheiro com extensão do tipo jpg ou pdf'
+                ]
+            ],
 
         ]);
         
         if (!$validation) {
+            dd($this->validator->getErrors());
+
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }
         
