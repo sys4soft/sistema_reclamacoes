@@ -78,15 +78,59 @@ class Main extends BaseController
         // print_r($this->request->getFiles());
 
         $file1 = $this->request->getFile('file1');
-        // $file2 = $this->request->getFile('file2');
-        // $file3 = $this->request->getFile('file3');
+        $file2 = $this->request->getFile('file2');
+        $file3 = $this->request->getFile('file3');
 
-        // dd([$file1, $file2, $file3]);
+        $filenames = [];
 
+        // file 1
         if($file1->isValid() && !$file1->hasMoved()) {
             $newName = $file1->getRandomName();
+
+            $filenames[] = [
+                'original' => $file1->getClientName(),
+                'new' => $newName
+            ];
+
             $file1->move(WRITEPATH . 'uploads', $newName);
         }
+
+        // file 2
+        if($file2->isValid() && !$file2->hasMoved()) {
+            $newName = $file2->getRandomName();
+
+            $filenames[] = [
+                'original' => $file2->getClientName(),
+                'new' => $newName
+            ];
+
+            $file2->move(WRITEPATH . 'uploads', $newName);
+        }
+
+        // file 3
+        if($file3->isValid() && !$file3->hasMoved()) {
+            $newName = $file3->getRandomName();
+
+            $filenames[] = [
+                'original' => $file3->getClientName(),
+                'new' => $newName
+            ];
+
+            $file3->move(WRITEPATH . 'uploads', $newName);
+        }
+
+
+        // get total info to store in database
+        $data = [
+            'email' => $this->request->getPost('email'),
+            'name' => $this->request->getPost('name'),
+            'area' => $this->request->getPost('area'),
+            'complaint' => $this->request->getPost('complaint'),
+            'files' => json_encode($filenames)
+        ];
+
+        echo '<pre>';
+        print_r($data);
 
         echo 'OK';
 
