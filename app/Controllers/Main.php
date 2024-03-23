@@ -143,9 +143,15 @@ class Main extends BaseController
             ]);
             $client_id = $client_model->getInsertID();
         } else {
-            $client_id = $client['id'];
+            $client_id = $client->id;
         }
 
-        echo $client_id;
+        $complaint_model->insert([
+            'client_id' => $client_id,
+            'area' => $data['area'],
+            'message' => $data['complaint'],
+            'attachments' => $data['files'],
+            'status' => 'pending'
+        ]);
     }
 }
