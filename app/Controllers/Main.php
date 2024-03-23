@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Controllers\BaseController;
+use App\Models\ClientModel;
+use App\Models\ComplaintModel;
 use CodeIgniter\HTTP\ResponseInterface;
 
 class Main extends BaseController
@@ -73,10 +75,8 @@ class Main extends BaseController
         if (!$validation) {
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         }      
-        
-        // print_r($this->request->getPost());
-        // print_r($this->request->getFiles());
 
+        // attachment files
         $file1 = $this->request->getFile('file1');
         $file2 = $this->request->getFile('file2');
         $file3 = $this->request->getFile('file3');
@@ -119,7 +119,6 @@ class Main extends BaseController
             $file3->move(WRITEPATH . 'uploads', $newName);
         }
 
-
         // get total info to store in database
         $data = [
             'email' => $this->request->getPost('email'),
@@ -129,10 +128,24 @@ class Main extends BaseController
             'files' => json_encode($filenames)
         ];
 
-        echo '<pre>';
-        print_r($data);
+        // store in database
+        $client_model = new ClientModel();
+        $complaint_model = new ComplaintModel();
 
-        echo 'OK';
+        // check if the client already exists
+        $client = $client_model->where('email', $data['email'])->first();
 
+        if(!$client) {
+            $client_model->insert([
+                'email' => $data['email'],
+                'name' => $data['name'],
+                'created_at' => date('Y-m-d H:i:s')
+            ]);
+            $client_id = $client_model->getInsertID();
+        } else {
+            $client_id = $client['id'];
+        }
+
+        echo $client_id;
     }
 }
